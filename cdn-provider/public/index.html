@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>NodeJS Starter Application</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/materialize/0.98.0/js/materialize.min.js"></script>
+
+    <!--link rel="stylesheet" href="stylesheets/style1.css"-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/materialize/0.98.0/css/materialize.min.css">
+    <!--link rel="stylesheet" href="http://www.blacktie.co/demo/dashgum/assets/css/style-responsive.css"-->
+    <script src="javascript/app.js"></script>
+  </head>
+
+  <style>
+  .progress {
+    width: 100%;
+    background-color: #ddd;
+  }
+
+  .myBar {
+    width: 0%;
+    height: 30px;
+    background-color: #4CAF50;
+  }
+  </style>
+  <body ng-app="myApp" ng-controller="myCtrl">
+
+    <nav class="grey darken-4">
+      <div class="nav-wrapper col-center-block" >
+        <div>
+          <a href="#" class="brand-logo">
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Hyper CDN - 
+            <small ng-if="isCustomer"> Customer Edition</small>
+            <small ng-if="!isCustomer"> Node Edition</small>
+          </a>
+        </div>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">{{name}}</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down" ng-hide="loginSuccess">
+          <li><button data-target="loginModal" class="btn">Login</button></li>
+        </ul>
+        <ul class="right hide-on-med-and-down" ng-show="loginSuccess" style="padding-left: 10px;">
+          <li><button ng-click="fetchReport()" data-target="reportModal" class="btn">Report</button></li>
+        </ul>
+        <!--ul class="right hide-on-med-and-down" ng-show="isCustomer && loginSuccess" -->
+        <ul class="right hide-on-med-and-down" ng-if="isCustomer" ng-show="loginSuccess">
+            <button data-target="submitModal" class="btn">submit</button></li>
+        </ul>
+      </div>
+    </nav>
+<main>
+
+  <div class="cdn_map_bg col-center-block"></div>
+
+    <div style="margin-top:3%" class="col-md-12 container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="content-panel">
+            <table class="highlight">
+              <caption class="text-center"><h4 ng-show="loginSuccess" >Contents Package List &nbsp&nbsp</h4></caption>
+              <thead ng-show="loginSuccess" >
+                <tr>
+                  <th style="width:10%">Task ID</th>
+                  <th style="width:10%">Customer</th>
+                  <th >Package</th>
+                  <th style="width:5%"></th>
+                  <th style="width:10%">Type</th>
+                  <th style="width:10%">Size</th>
+                  <th style="width:15%">CDN Nodes</th>
+                  <th ng-if="!isCustomer"></th>
+                </tr>
+              </thead>
+              <tbody ng-if="!loginSuccess">
+                <tr ng-repeat="x in ['1','2','3','4'] " id="r{{x.id}}">
+                  <td></td>
+                </tr>
+              </tbody>
+              <tbody ng-if="loginSuccess">
+              </body>
+                <tr ng-repeat="x in tasks | orderBy: 'time' : true" id="r{{x.id}}">
+                  <td >{{ $index + 1 }}</td>
+                  <td>{{ x.customer }}</td>
+                  <td>
+                    <a href={{x.url}}>{{ x.package }}</a>
+                  </td>
+                  <td>
+                    <div class="progress" style="visibility:hidden">
+                      <div class="myBar" id="row{{x.id}}"/>
+                    </div>
+                  </td>
+                  <td>{{ x.type }}</td>
+                  <td>{{ x.size }}</td>
+                  <td>{{ x.nodesText }}                  
+                  </td>
+                  <td ng-if="!isCustomer">
+                    <button ng-disabled="{{x.joined}}" id={{x.id}}  type="button" class="btn btn-primary light-blue darken-4 btn-sm" ng-click="join(x)" style="width:100px" ng-disabled={{x.buttonDisabled}}>
+                      {{ x.buttonText }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+  </div>
+</main>
+
+
+    <footer class="page-footer grey darken-4" style="margin-top:10%">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Hyper CDN</h5>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">About us</h5>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright grey darken-3">
+        <div class="container">
+        © 2017 Copyright 
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" ng-model="username">
+                  <label>Username</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="password" class="validate" ng-model="password">
+                  <label>Password</label>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-light btn" ng-click="login()">Login</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+      </div>
+
+        <div id="reportModal" class="modal">
+            <div class="modal-content">
+                <h4>My Report</h4>
+                <table class="highlight">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Contents Package</th>
+                        <th ng-if="isCustomer">CDN Node</th>
+                        <th>Endpoint IP</th>
+                        <th>Size</th>
+                        <th>Confirmed</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="report in reportList">
+                        <td>{{report.time*1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                        <td>{{report.taskId}}</td>
+                        <td ng-if="isCustomer">{{report.cdnNodeName}}</td>
+                        <td>{{report.endpointIP.split(',')[0]}}</td>
+                        <td>{{report.size}}MB</td>
+                        <td><div class="switch">
+                            <label>
+                                <input type="checkbox" ng-checked="report.ack!=0">
+                                <span class="lever"></span>
+                            </label>
+                        </div></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="left" ng-if="totalBytes"><strong>Total: {{totalBytes}} MB</strong></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light modal-action modal-close btn">OK</a>
+            </div>
+        </div>
+
+      <div id="submitModal" class="modal">
+        <div class="modal-content">
+            <h4>Submit Task</h4>
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" class="validate" ng-model="taskURL">
+                  <label>Task URL</label>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-light btn" ng-click="submit()">Submit</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+      </div>
+
+  </body>
+
+</html>

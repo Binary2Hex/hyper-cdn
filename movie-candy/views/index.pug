@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  .jumbothron.masthead(style="background:#0e2029;text-align:center;color:white")
+    .container 
+      .row
+        h2 欢迎访问 #{title}
+      .row
+        P.lead 
+          | #{title}使用HyperCDN提供的CDN加速服务， 加速视频的访问。 HyperCDN，自治的，可信的， 国民的CDN。<br> 
+          span(style="margin:0 0 0 0") Powered by &nbsp;
+            img(src="images/bluemix.svg", style="height: 25px")
+            | &nbsp;
+            img(src="images/hl-white.png", style="height: 25px")
+  .container
+    .row
+        div
+          .row
+            .col-md-8
+              #carousel-video
+                #blueimp-gallery-video.blueimp-gallery.blueimp-gallery-carousel
+                  .slides
+                  h3.title 
+                  a.prev
+                  a.next
+                  a.play-pause
+                  ol.indicator
+            .col-md-4
+              .container-fluid
+                  .row
+                   .col-md-4
+                   .col-md-8.close2right.down2middle
+                      .checkbox.checkbox-slider--b.checkbox-slider-md#cdn-toggle
+                        label
+                          input(type="checkbox")
+                          span CDN加速
+                  .row
+                    .col-md-4.close2right.down2middle
+                      #SiteLocal.fountainComp(style="margin-right: 0px")
+                        .fountainG#fountainG_8
+                        .fountainG#fountainG_7
+                        .fountainG#fountainG_6
+                        .fountainG#fountainG_5
+                        .fountainG#fountainG_4
+                        .fountainG#fountainG_3
+                        .fountainG#fountainG_2
+                        .fountainG#fountainG_1
+                    .col-md-8.close2left
+                      img(src="images/site/site1.png")
+                      span.label.label-info.text-center 糖果电影
+                  .row
+                    .col-md-4.close2right.down2middle
+                      #Site1.fountainComp(style="margin-right: 0px")
+                        .fountainG#fountainG_1
+                        .fountainG#fountainG_2
+                        .fountainG#fountainG_3
+                        .fountainG#fountainG_4
+                        .fountainG#fountainG_5
+                        .fountainG#fountainG_6
+                        .fountainG#fountainG_7
+                        .fountainG#fountainG_8
+                    .col-md-8.close2left
+                      img(src="images/site/site2.png")
+                      span.label.label-info.text-center Node-CN
+                  .row
+                    .col-md-4.close2right.down2middle
+                      #Site2.fountainComp(style="margin-right: 0px")
+                        .fountainG#fountainG_1
+                        .fountainG#fountainG_2
+                        .fountainG#fountainG_3
+                        .fountainG#fountainG_4
+                        .fountainG#fountainG_5
+                        .fountainG#fountainG_6
+                        .fountainG#fountainG_7
+                        .fountainG#fountainG_8
+                    .col-md-8.close2left
+                      img(src="images/site/site3.png")
+                      span.label.label-info.text-center Node-UK
+                    .col-md-8
+                  .row
+                    .col-md-16
+                      h5#file-list
+  footer.bs-docs-footer(style="background-color: #000000")
+    .container
+      ul.bs-docs-footer-links
+        li
+          a(href='') GitHub
+        li
+          a(href='') Twitter
+        li
+          a(href='') Examples
+        li
+          a(href='') About

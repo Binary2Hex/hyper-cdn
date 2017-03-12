@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: cdn-provider2
+  host: cdn-provider2-uk
+  disk_quota: 1024M

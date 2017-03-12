@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>NodeJS Starter Application</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"-->
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="javascript/materialize.min.js"></script>
+
+    <!--link rel="stylesheet" href="stylesheets/style1.css"-->
+    <link rel="stylesheet" href="stylesheets/materialize.min.css">
+    <!--link rel="stylesheet" href="http://www.blacktie.co/demo/dashgum/assets/css/style-responsive.css"-->
+  </head>
+
+  <script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope,$http) {
+
+    $http.get('getSiteName').success(function(response) {
+      $scope.name = response.siteName;
+    });
+  });
+  </script>
+  <body ng-app="myApp" ng-controller="myCtrl">
+
+    <nav class="grey darken-4">
+      <div class="nav-wrapper col-center-block" >
+        <div class='loader1'>
+          <div class='spinner1'>
+            <div class='container-A'>
+              <div class='hex0'></div>
+              <div class='hex120'></div>
+              <div class='hex240'></div>
+              <div class='spinner1'>
+                <div class='container-A'>
+                  <div class='hex0'></div>
+                  <div class='hex120'></div>
+                  <div class='hex240'></div>
+                  <div class='spinner1'>
+                    <div class='container-A'>
+                      <div class='hex0'></div>
+                      <div class='hex120'></div>
+                      <div class='hex240'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="#" class="brand-logo">
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Hyper CDN
+          </a>
+        </div>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="logout.html">{{name}}</a></li>
+        </ul>
+      </div>
+    </nav>
+<main>
+
+  <div class="cdn_map_bg col-center-block"></div>
+
+    <div style="margin-top:3%" class="col-md-12 container">
+
+    <div class="row">
+      <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <form method="POST" name="submitTask" action="submitTask">
+            <fieldset>
+              <legend>Submit Contents Package</legend>
+              URL:
+              <input type="text" name="url" >
+              <br>
+              <input type="submit" value="Submit">
+            </fieldset>
+          </form>
+       </div>
+  </div>
+</main>
+
+
+    <footer class="page-footer grey darken-4" style="margin-top:10%">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Hyper CDN</h5>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">About us</h5>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright grey darken-3">
+        <div class="container">
+        © 2017 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+</html>

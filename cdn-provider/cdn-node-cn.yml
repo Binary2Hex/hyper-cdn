@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  domain: mybluemix.net
+  name: cdn-node-cn
+  host: cdn-node-cn
+  disk_quota: 1024M
